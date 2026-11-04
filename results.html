@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>頒獎典禮｜醫護教育創意設計大賞</title>
+<meta name="theme-color" content="#F8F6F1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="ceremony">
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" data-trophy="gold"></span><span class="brand-txt"><b>醫護教育創意設計大賞</b><small>Awards Ceremony</small></span></a>
+  <nav class="nav"><a href="index.html">首頁</a><a href="results.html">頒獎典禮</a><a href="admin.html" class="hide-sm">教師後台</a></nav>
+</div></header>
+
+<main class="has-toolbar"><div class="wrap wrap-wide">
+  <div class="ceremony-head">
+    <div><div class="eyebrow">Awards Presentation Mode</div><h2 class="sec">頒獎典禮</h2></div>
+    <div class="row">
+      <div class="seg" id="catTabs"><button data-cat="pres" aria-pressed="true">簡報組頒獎</button><button data-cat="poster" aria-pressed="false">海報組頒獎</button></div>
+      <button class="btn" id="presentBtn">投影模式（全螢幕）</button>
+      <button class="btn" id="statsToggle" hidden>顯示票數統計</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="rays"></div>
+    <div class="spot"></div>
+    <div class="floor"></div>
+    <div class="stage-title">
+      <div class="eyebrow" id="stEvent">醫護教育創意設計大賞</div>
+      <h2 id="stTitle">簡報組頒獎典禮</h2>
+      <div class="cat-en" id="stEn">Presentation Awards</div>
+    </div>
+    <div class="podium" id="podium"></div>
+    <div class="glory"><h2>榮耀時刻</h2><p>Moment of Glory</p><div class="cat" id="gloryCat"></div></div>
+    <div class="congrats">Congratulations to all award winners</div>
+    <canvas class="fx" id="fx"></canvas>
+    <div class="waiting" id="waiting">
+      <div data-trophy="gold"></div>
+      <h3 id="waitTitle">得獎結果尚未公布</h3>
+      <p>教師公布後，此畫面會自動更新。</p>
+    </div>
+    <div class="start-cover" id="startCover" hidden>
+      <div data-trophy="gold" style="width:12cqh"></div>
+      <h3 id="startTitle">頒獎典禮</h3>
+      <p id="startNote"></p>
+      <button class="btn btn-gold btn-xl" id="startBtn">開始頒獎</button>
+    </div>
+  </div>
+
+  <section class="stats-view card card-pad" id="statsView" hidden>
+    <h2 class="sec" id="statsTitle" style="font-size:26px">票數統計（教師專用）</h2>
+    <div id="statsBars"></div>
+  </section>
+</div></main>
+
+<div class="toolbar" id="toolbar" role="toolbar" aria-label="頒獎控制">
+  <button class="btn btn-gold" id="tbStart">開始頒獎</button>
+  <button class="btn" id="tbNext">下一步 ▶</button>
+  <button class="btn" id="tbAuto" aria-pressed="false">自動播放：關</button>
+  <span class="sep"></span>
+  <button class="btn tb-cat" data-cat="pres">簡報組</button>
+  <button class="btn tb-cat" data-cat="poster">海報組</button>
+  <span class="sep"></span>
+  <span class="step-indicator" id="stepInd">等待公布</span>
+  <span class="sep"></span>
+  <button class="btn" id="tbFull">全螢幕</button>
+  <button class="btn" id="tbHide">隱藏工具列</button>
+  <button class="btn" id="tbPng">匯出 PNG</button>
+  <button class="btn" id="tbCsv">得獎名單</button>
+</div>
+<button class="btn btn-sm show-tools" id="showTools" hidden>顯示工具列</button>
+
+<script src="vendor/supabase.js"></script>
+<script src="vendor/html2canvas.min.js"></script>
+<script src="vendor/xlsx.full.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>AW.results();</script>
+</body>
+</html>

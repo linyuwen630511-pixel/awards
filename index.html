@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>醫護教育創意設計大賞｜Healthcare Education Creative Awards</title>
+<meta name="description" content="醫護教育創意設計大賞：簡報組與海報組互動票選及頒獎典禮">
+<meta name="theme-color" content="#F8F6F1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" data-trophy="gold"></span><span class="brand-txt"><b>醫護教育創意設計大賞</b><small>Healthcare Education Creative Awards</small></span></a>
+  <nav class="nav"><a href="index.html">首頁</a><a href="vote.html">參與投票</a><a href="results.html">頒獎典禮</a><a href="admin.html" class="hide-sm">教師後台</a></nav>
+</div></header>
+
+<main><div class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Healthcare Education Creative Awards</div>
+      <h1 class="title" id="evName">醫護教育創意設計大賞</h1>
+      <p class="tagline">創意展現<b>・</b>專業交流<b>・</b>榮耀時刻</p>
+      <div class="row" style="margin-top:24px">
+        <span class="status" id="status" data-status="setup"><i></i>讀取中…</span>
+        <span class="muted" id="ctaHint" style="font-size:15px"></span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><span>參賽組數</span><b><span id="statGroups">12</span><small>組</small></b></div>
+        <div class="stat"><span>投票資格</span><b><span id="statVoters">—</span><small>人</small></b></div>
+        <div class="stat"><span>競賽類別</span><b>2<small>類</small></b></div>
+      </div>
+      <div class="home-cta">
+        <a class="btn btn-lg btn-navy" id="ctaVote" href="vote.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+          個人驗證・進入投票</a>
+        <a class="btn btn-lg" id="ctaResults" href="results.html" hidden>查看得獎結果</a>
+      </div>
+    </div>
+    <div class="hero-trophy" data-trophy="gold" data-cls="hero-svg"></div>
+  </section>
+
+  <section class="grid-2" style="margin-top:40px">
+    <div class="card card-pad">
+      <div class="eyebrow">Voting Rules</div>
+      <h2 class="sec" style="margin:6px 0 16px">投票規則</h2>
+      <ul class="rules">
+        <li><span class="n">1</span><span>每位參賽者以<b>個人身分</b>投票；同一組的組員各自擁有一次投票資格。</span></li>
+        <li><span class="n">2</span><span><b>簡報組</b>與<b>海報組</b>各選出 <b>3 個不同組別</b>，兩類別完成後一次送出。</span></li>
+        <li><span class="n">3</span><span id="ruleSelf">不可投給自己所屬的組別（系統會自動停用）。</span></li>
+        <li><span class="n">4</span><span>每人只能提交<b>一次</b>，送出後不得修改，也無法再次投票。</span></li>
+        <li><span class="n">5</span><span>投票期間不公開即時排名；得獎結果由教師於頒獎典禮公布。</span></li>
+      </ul>
+    </div>
+    <div class="card card-pad">
+      <div class="eyebrow">How to Vote</div>
+      <h2 class="sec" style="margin:6px 0 16px">投票流程</h2>
+      <ul class="rules">
+        <li><span class="n">1</span><span>以手機掃描教室投影的 QR Code，進入投票頁面。</span></li>
+        <li><span class="n">2</span><span>輸入教師發給您的 <b>8 碼個人投票代碼</b>，確認姓名與組別。</span></li>
+        <li><span class="n">3</span><span>簡報組選擇 3 組 → 海報組選擇 3 組。</span></li>
+        <li><span class="n">4</span><span>確認選票內容後按「確認送出」，完成本次唯一的一張選票。</span></li>
+      </ul>
+    </div>
+  </section>
+</div></main>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>AW.home();</script>
+</body>
+</html>

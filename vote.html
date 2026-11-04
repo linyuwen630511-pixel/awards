@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>參與投票｜醫護教育創意設計大賞</title>
+<meta name="theme-color" content="#F8F6F1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" data-trophy="gold"></span><span class="brand-txt"><b id="evName">醫護教育創意設計大賞</b><small>Best Work Voting</small></span></a>
+  <span class="status" id="status" data-status="setup"><i></i>讀取中…</span>
+</div></header>
+
+<main><div class="wrap vote-shell">
+  <div class="steps" id="steps" aria-label="投票步驟">
+    <span><i>1</i>驗證身分</span><span><i>2</i>簡報組</span><span><i>3</i>海報組</span><span><i>4</i>確認</span><span><i>5</i>完成</span>
+  </div>
+
+  <div class="notice warn" id="gateNote" hidden style="margin-bottom:20px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg><span></span></div>
+
+  <!-- 1. 輸入代碼 -->
+  <section id="vCode" hidden>
+    <div class="card card-pad panel-center">
+      <div class="eyebrow">Personal Voting Code</div>
+      <h2 class="sec" style="margin-top:8px">個人投票驗證</h2>
+      <p class="muted" style="margin-top:8px">請輸入教師發給您的 8 碼個人投票代碼</p>
+      <form id="codeForm" style="margin-top:22px;display:grid;gap:14px" autocomplete="off">
+        <label class="sr-only" for="codeInput">投票代碼</label>
+        <input class="input code-input" id="codeInput" placeholder="XXXX-XXXX" maxlength="9" inputmode="text" autocapitalize="characters" autocorrect="off" spellcheck="false" required>
+        <div class="notice danger" id="codeErr" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><span></span></div>
+        <button class="btn btn-gold btn-lg btn-block" type="submit">驗證代碼</button>
+      </form>
+      <p class="muted" style="font-size:13.5px;margin-top:16px;line-height:1.8">代碼不分大小寫。每位參賽者一組代碼，僅能投票一次，請勿交給他人。</p>
+    </div>
+  </section>
+
+  <!-- 2. 歡迎 -->
+  <section id="vWelcome" hidden>
+    <div class="card card-pad panel-center">
+      <div data-trophy="gold" style="width:84px;margin:0 auto"></div>
+      <div class="welcome-name" id="wName">歡迎</div>
+      <div class="welcome-group" id="wGroup"></div>
+      <p class="muted" id="wSelf" style="margin-top:16px"></p>
+      <ul class="rules" style="text-align:left;margin:22px auto 0;max-width:420px">
+        <li><span class="n">1</span><span>簡報組：選擇 3 個不同組別</span></li>
+        <li><span class="n">2</span><span>海報組：選擇 3 個不同組別</span></li>
+        <li><span class="n">3</span><span>確認後一次送出，送出後不可修改</span></li>
+      </ul>
+      <button class="btn btn-gold btn-lg btn-block" id="btnBegin" style="margin-top:26px">開始投票</button>
+      <button class="btn btn-ghost btn-sm" id="btnSwitch" style="margin-top:10px;border:0">不是我？重新輸入代碼</button>
+    </div>
+  </section>
+
+  <!-- 3. 選組（簡報組／海報組） -->
+  <section id="vPick" hidden>
+    <div class="vote-head">
+      <div><div class="eyebrow" id="pickEn">Presentation Awards</div><h2 id="pickTitle">簡報組｜最佳簡報作品票選</h2><p>請選擇 3 個不同組別，點選卡片即可選取或取消。</p></div>
+    </div>
+    <div class="groups" id="groupGrid"></div>
+  </section>
+
+  <!-- 4. 確認 -->
+  <section id="vConfirm" hidden>
+    <div style="text-align:center">
+      <div class="eyebrow">Final Confirmation</div>
+      <h2 class="sec" style="margin-top:6px">確認您的選票</h2>
+    </div>
+    <div class="summary">
+      <div class="card"><h3>簡報組</h3><ol id="sum_pres"></ol></div>
+      <div class="card"><h3>海報組</h3><ol id="sum_poster"></ol></div>
+    </div>
+    <div class="final-warn">
+      <b>您即將送出本次唯一的一張選票。</b>
+      <b>送出後不得修改，也不能再次投票。</b>
+    </div>
+    <div class="row" style="justify-content:center;margin-top:24px;gap:14px">
+      <button class="btn btn-lg" id="btnEdit">返回修改</button>
+      <button class="btn btn-lg btn-gold" id="btnSubmit">確認送出</button>
+    </div>
+  </section>
+
+  <!-- 5. 完成 -->
+  <section id="vDone" hidden>
+    <div class="card card-pad success panel-center">
+      <svg class="check-anim" viewBox="0 0 120 120"><circle class="halo" cx="60" cy="60" r="56"/><circle cx="60" cy="60" r="54"/><path d="M36 62l16 16 32-34"/></svg>
+      <h2>投票成功！</h2>
+      <p style="font-size:18px;margin-top:10px">感謝您參與醫護教育創意設計大賞。</p>
+      <hr class="divider">
+      <p style="font-size:17px;font-weight:500">您已完成投票，無法再次投票。</p>
+      <p class="muted" id="doneAt" style="margin-top:6px;font-size:14px"></p>
+      <a class="btn" href="index.html" style="margin-top:22px">返回首頁</a>
+    </div>
+  </section>
+
+  <!-- 已投過票 -->
+  <section id="vVoted" hidden>
+    <div class="card card-pad success panel-center">
+      <div data-trophy="gold" style="width:84px;margin:0 auto"></div>
+      <h2 style="font-size:clamp(26px,3.4vw,38px)">您已完成投票</h2>
+      <p style="font-size:18px;margin-top:8px" id="votedName"></p>
+      <hr class="divider">
+      <p style="font-size:17px;font-weight:500">您已完成投票，無法再次投票。</p>
+      <p class="muted" id="votedAt" style="margin-top:6px;font-size:14px"></p>
+      <a class="btn" href="index.html" style="margin-top:22px">返回首頁</a>
+    </div>
+  </section>
+</div></main>
+
+<div class="selbar" id="selbar" hidden>
+  <div class="inner">
+    <span class="seldots" id="selDots"><i></i><i></i><i></i></span>
+    <span class="selcount" id="selCount" aria-live="polite">已選擇 <b>0</b> / 3 組</span>
+    <span class="spacer"></span>
+    <button class="btn" id="btnPrev">← 返回</button>
+    <button class="btn btn-gold" id="btnNext" disabled>下一步：海報組 →</button>
+  </div>
+</div>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>AW.vote();</script>
+</body>
+</html>
